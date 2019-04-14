@@ -1,6 +1,7 @@
 package org.dzq.dao;
 import java.sql.*;
 import org.dzq.entity.Login;
+//ç™»å½•
 public class LoginDao {
 	//public int login(String name,String pwd) {
 	public int login(Login login) {
@@ -11,20 +12,20 @@ public class LoginDao {
 		Statement stmt = null;
 		ResultSet rs = null ; 
 		try {
-			// a.µ¼ÈëÇı¶¯£¬¼ÓÔØ¾ßÌåµÄÇı¶¯Àà
-			Class.forName("com.mysql.jdbc.Driver");// ¼ÓÔØ¾ßÌåµÄÇı¶¯Àà
-			// b.ÓëÊı¾İ¿â½¨Á¢Á¬½Ó
+			// a.å¯¼å…¥é©±åŠ¨ï¼ŒåŠ è½½å…·ä½“çš„é©±åŠ¨ç±»
+			Class.forName("com.mysql.jdbc.Driver");// åŠ è½½å…·ä½“çš„é©±åŠ¨ç±»
+			// b.ä¸æ•°æ®åº“å»ºç«‹è¿æ¥
 			connection = DriverManager.getConnection(URL, USERNAME, PWD);
-			// c.·¢ËÍsql£¬Ö´ĞĞ(ÔöÉ¾¸Ä¡¢¡¾²é¡¿)
+			// c.å‘é€sqlï¼Œæ‰§è¡Œ(å¢åˆ æ”¹ã€ã€æŸ¥ã€‘)
 			stmt = connection.createStatement();
 //			String sql = "select stuno,stuname from student";
 			
 			
 			String sql = "select count(*) from login where uname='"+login.getUname()+"' and upwd ='"+login.getUpwd()+"' " ;
 //			String sql = "select * from student where stuname like '%"+name+"%'";
-			// Ö´ĞĞSQL(ÔöÉ¾¸ÄexecuteUpdate()£¬²éÑ¯executeQuery())
-			rs = stmt.executeQuery(sql); // ·µ»ØÖµ±íÊ¾ ÔöÉ¾¸Ä ¼¸ÌõÊı¾İ
-			// d.´¦Àí½á¹û
+			// æ‰§è¡ŒSQL(å¢åˆ æ”¹executeUpdate()ï¼ŒæŸ¥è¯¢executeQuery())
+			rs = stmt.executeQuery(sql); // è¿”å›å€¼è¡¨ç¤º å¢åˆ æ”¹ å‡ æ¡æ•°æ®
+			// d.å¤„ç†ç»“æœ
 			int count = -1;
 			if(rs.next()) {
 				count = rs.getInt(1) ;
@@ -44,7 +45,7 @@ public class LoginDao {
 		finally {
 			try {
 				if(rs!=null) rs.close(); 
-				 if(stmt!=null) stmt.close();// ¶ÔÏó.·½·¨
+				 if(stmt!=null) stmt.close();// å¯¹è±¡.æ–¹æ³•
 				 if(connection!=null)connection.close();
 			}catch(SQLException e) {
 				e.printStackTrace();
